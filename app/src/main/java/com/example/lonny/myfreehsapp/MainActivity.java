@@ -24,26 +24,15 @@ public class MainActivity extends AppCompatActivity {
         titleTextView=(TextView) findViewById(R.id.title);
         linksTextView=(TextView) findViewById(R.id.links);
 
-        try {
+        Runnable runnable = new Runnable(){
+            public void run(){
+                GetHtmlInfo tempData = new GetHtmlInfo("https://www.google.com");
 
-            // need http protocol
-            doc = Jsoup.connect("http://google.com").get();
+            }
+        };
+        Thread myThread = new Thread(runnable);
+            myThread.start();
 
-            // get page title
-            titleTextView.append(doc.title());
-
-
-
-            // get all links
-            links = doc.select("a[href]");
-                for (Element link: links){
-                    linksTextView.append(link.toString());
-                }
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
 
     }
