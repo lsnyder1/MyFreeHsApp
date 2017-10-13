@@ -21,19 +21,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        titleTextView=(TextView) findViewById(R.id.title);
-        linksTextView=(TextView) findViewById(R.id.links);
+        titleTextView = (TextView) findViewById(R.id.title);
+        linksTextView = (TextView) findViewById(R.id.links);
 
-        Runnable runnable = new Runnable(){
-            public void run(){
+        Runnable runnable = new Runnable() {
+            public void run() {
                 GetHtmlInfo tempData = new GetHtmlInfo("https://www.google.com");
 
             }
         };
         Thread myThread = new Thread(runnable);
-            myThread.start();
+        myThread.start();
 
-
-
+        titleTextView.setText();
+        linksTextView.setText("tempData.getLinks()");
     }
-}
+    }
+
